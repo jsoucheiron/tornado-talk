@@ -9,8 +9,6 @@ from request_handlers.hello_world import HelloWorldHandler
 from request_handlers.timer_handler import TimerHandler
 from request_handlers.sharknado import SharknadoQuote
 
-IOLoop.configure('tornado.platform.asyncio.AsyncIOLoop')
-
 if __name__ == "__main__":
     log = logging.getLogger()
     log.setLevel(logging.DEBUG)
@@ -29,3 +27,4 @@ if __name__ == "__main__":
     server.bind(8888)
     server.start(0)
     IOLoop.current().start()
+
