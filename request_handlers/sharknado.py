@@ -8,7 +8,6 @@ from tornado.httpclient import AsyncHTTPClient
 from bs4 import BeautifulSoup
 
 
-
 SHARKNADO_IMDB_URL = 'http://www.imdb.com/title/tt2724064/quotes'
 
 
