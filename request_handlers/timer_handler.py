@@ -1,10 +1,27 @@
-from tornado.gen import coroutine, sleep
-from tornado.web import RequestHandler
+from asyncio import sleep
+from tornado.ioloop import IOLoop
+from tornado.web import Application
+
+from request_handlers.base_request_handler import BaseRequestHandler
 
 
-class TimerHandler(RequestHandler):
-    @coroutine
-    def get(self):
+class TimerHandler(BaseRequestHandler):
+    async def get(self):
         duration = int(self.get_argument('seconds', 10))
-        yield sleep(duration)
+        await sleep(duration)
         self.write("Slept for {} seconds".format(duration))
+
+
+def run():
+    IOLoop.configure('tornado.platform.asyncio.AsyncIOLoop')
+    app = Application(
+        [
+            (r'/sleep/?', TimerHandler)
+        ]
+    )
+    app.listen(8888)
+    IOLoop.current().start()
+
+
+if __name__ == '__main__':
+    run()

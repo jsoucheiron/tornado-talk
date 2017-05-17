@@ -1,5 +1,6 @@
-tornado
+asynctest
+beautifulsoup4
 pytest
 pytest-cov
-beautifulsoup4
-mock
+tornado
+uvloop

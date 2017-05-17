@@ -4,15 +4,15 @@ from tornado.ioloop import IOLoop
 from request_handlers.base_request_handler import BaseRequestHandler
 
 
-class HelloWorldHandler(BaseRequestHandler):
-    def get(self):
-        self.write("Hello, world")
+class HelloNameHandler(BaseRequestHandler):
+    def get(self, name):
+        self.write("Hello, {}".format(name))
 
 
 def run():
     app = Application(
         [
-            (r'/', HelloWorldHandler)
+            (r'/(?P<name>.+)', HelloNameHandler)
         ]
     )
     app.listen(8888)
