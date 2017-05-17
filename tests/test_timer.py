@@ -1,9 +1,11 @@
+from asyncio import sleep
+
 from unittest.mock import patch
 
 from asynctest.mock import patch as asyncpatch
 from tornado.gen import Future
 from tornado.ioloop import IOLoop
-from tornado.testing import AsyncHTTPTestCase
+from tornado.testing import AsyncHTTPTestCase, gen_test
 from tornado.web import Application
 
 from request_handlers.timer_handler import TimerHandler
@@ -47,3 +49,8 @@ class TestTimerHandler(AsyncHTTPTestCase):
         self.assertEqual(response.code, 200)
         self.assertEqual(response.body, b'Slept for 10 seconds')
         sleep_mock.assert_called_once_with(10)
+
+    @gen_test
+    async def test_dummy_sleep(self):
+        await sleep(0.1)
+        assert True
