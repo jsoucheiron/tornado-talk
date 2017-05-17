@@ -17,9 +17,9 @@ def run():
     IOLoop.configure('tornado.platform.asyncio.AsyncIOLoop')
     app = Application([
         (r'/', HelloWorldHandler),
-        (r"/quote", SharknadoQuote),
+        (r"/quote/?", SharknadoQuote),
         (r'/sleep/?', TimerHandler),
-        (r'/(?P<name>.+)', HelloNameHandler)
+        (r'/hello/(?P<name>.+)/?', HelloNameHandler)
     ])
     server = HTTPServer(app)
     server.bind(8888)
