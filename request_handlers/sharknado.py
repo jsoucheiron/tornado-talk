@@ -42,7 +42,7 @@ class SharknadoQuote(BaseRequestHandler):
 def run():
     app = Application(
         [
-            (r'/quote', SharknadoQuote)
+            (r"/quote/?", SharknadoQuote),
         ]
     )
     app.listen(8888)

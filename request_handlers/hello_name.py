@@ -12,7 +12,7 @@ class HelloNameHandler(BaseRequestHandler):
 def run():
     app = Application(
         [
-            (r'/(?P<name>.+)', HelloNameHandler)
+            (r'/hello/(?P<name>.+)/?', HelloNameHandler)
         ]
     )
     app.listen(8888)
